@@ -172,6 +172,12 @@
           </annotationProcessorPaths>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.jenkins-ci.tools</groupId>
+        <artifactId>maven-hpi-plugin</artifactId>
+        <version>3.60</version>
+        <extensions>true</extensions>
+      </plugin>
     </plugins>
   </build>
 
