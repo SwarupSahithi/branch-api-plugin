@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -16,12 +18,12 @@
 
   <name>Branch API Plugin</name>
   <description>This plugin provides an API for multiple branch based projects.</description>
-  <url>http://wiki.jenkins-ci.org/display/JENKINS/Branch+API+Plugin</url>
+  <url>https://github.com/jenkinsci/branch-api-plugin</url>
 
   <licenses>
     <license>
       <name>The MIT license</name>
-      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <url>https://opensource.org/licenses/MIT</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
@@ -33,37 +35,12 @@
     </developer>
   </developers>
 
-  <prerequisites>
-    <maven>2.2.1</maven>
-  </prerequisites>
-
-  <scm>
-    <connection>scm:git:git://github.com/jenkinsci/branch-api-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkinsci/branch-api-plugin.git</developerConnection>
-    <url>http://github.com/jenkinsci/branch-api-plugin</url>
-    <tag>HEAD</tag>
-  </scm>
-
-  <properties>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.findbugs.failure.strict>true</maven.findbugs.failure.strict>
-  </properties>
-
   <repositories>
     <repository>
       <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
+      <url>https://repo.jenkins-ci.org/public/</url>
     </repository>
   </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
 
   <dependencies>
     <!-- regular dependencies -->
@@ -134,18 +111,16 @@
           <executions>
             <execution>
               <id>enforce-maven</id>
-              <goals>
-                <goal>enforce</goal>
-              </goals>
+              <goals><goal>enforce</goal></goals>
               <configuration>
                 <rules>
                   <requireMavenVersion>
                     <version>(,2.1.0),(2.1.0,2.2.0),(2.2.0,)</version>
-                    <message>Maven 2.1.0 and 2.2.0 produce incorrect GPG signatures and checksums respectively.</message>
+                    <message>Maven 2.1.0 and 2.2.0 produce incorrect checksums.</message>
                   </requireMavenVersion>
                   <requireMavenVersion>
                     <version>(,3.0),[3.0.4,)</version>
-                    <message>Maven 3.0 through 3.0.3 inclusive do not pass correct settings.xml to Maven Release Plugin.</message>
+                    <message>Maven 3.0–3.0.3 have release-plugin issues.</message>
                   </requireMavenVersion>
                 </rules>
               </configuration>
@@ -160,21 +135,18 @@
         <artifactId>maven-release-plugin</artifactId>
         <version>2.4.1</version>
       </plugin>
-
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
         <version>3.0.1</version>
         <configuration>
           <excludeFilterFile>src/findbugs/excludesFilter.xml</excludeFilterFile>
-          <failOnError>${maven.findbugs.failure.strict}</failOnError>
+          <failOnError>true</failOnError>
         </configuration>
         <executions>
           <execution>
             <phase>verify</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
+            <goals><goal>check</goal></goals>
           </execution>
         </executions>
       </plugin>
@@ -196,3 +168,11 @@
               <groupId>org.kohsuke</groupId>
               <artifactId>access-modifier-annotations</artifactId>
               <version>1.22</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
