@@ -1,35 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
- ~ The MIT License
- ~
- ~ Copyright (c) 2011-2013, CloudBees, Inc., Stephen Connolly.
- ~
- ~ Permission is hereby granted, free of charge, to any person obtaining a copy
- ~ of this software and associated documentation files (the "Software"), to deal
- ~ in the Software without restriction, including without limitation the rights
- ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- ~ copies of the Software, and to permit persons to whom the Software is
- ~ furnished to do so, subject to the following conditions:
- ~
- ~ The above copyright notice and this permission notice shall be included in
- ~ all copies or substantial portions of the Software.
- ~
- ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- ~ THE SOFTWARE.
- -->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>1.580.3</version> <!-- SCMTriggerItem -->
+    <version>1.580.3</version>
   </parent>
 
   <artifactId>branch-api</artifactId>
@@ -37,10 +15,9 @@
   <packaging>hpi</packaging>
 
   <name>Branch API Plugin</name>
-  <description>
-    This plugin provides an API for multiple branch based projects.
-  </description>
+  <description>This plugin provides an API for multiple branch based projects.</description>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/Branch+API+Plugin</url>
+
   <licenses>
     <license>
       <name>The MIT license</name>
@@ -80,6 +57,7 @@
       <url>http://repo.jenkins-ci.org/public/</url>
     </repository>
   </repositories>
+
   <pluginRepositories>
     <pluginRepository>
       <id>repo.jenkins-ci.org</id>
@@ -104,13 +82,34 @@
       <artifactId>jsr305</artifactId>
       <version>3.0.0</version>
     </dependency>
+
     <!-- plugin dependencies -->
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>scm-api</artifactId>
       <version>0.2</version>
     </dependency>
-    <!-- jenkins dependencies -->
+
+    <!-- annotation-related dependencies -->
+    <dependency>
+      <groupId>org.kohsuke.stapler</groupId>
+      <artifactId>stapler</artifactId>
+      <version>1.262</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kohsuke</groupId>
+      <artifactId>access-modifier-annotations</artifactId>
+      <version>1.22</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.infradna.tool</groupId>
+      <artifactId>bridge-method-annotation</artifactId>
+      <version>1.18</version>
+      <scope>provided</scope>
+    </dependency>
+
     <!-- test dependencies -->
     <dependency>
       <groupId>junit</groupId>
@@ -142,14 +141,11 @@
                 <rules>
                   <requireMavenVersion>
                     <version>(,2.1.0),(2.1.0,2.2.0),(2.2.0,)</version>
-                    <message>Maven 2.1.0 and 2.2.0 produce incorrect GPG signatures and checksums respectively.
-                    </message>
+                    <message>Maven 2.1.0 and 2.2.0 produce incorrect GPG signatures and checksums respectively.</message>
                   </requireMavenVersion>
                   <requireMavenVersion>
                     <version>(,3.0),[3.0.4,)</version>
-                    <message>Maven 3.0 through 3.0.3 inclusive do not pass correct settings.xml to Maven Release
-                      Plugin.
-                    </message>
+                    <message>Maven 3.0 through 3.0.3 inclusive do not pass correct settings.xml to Maven Release Plugin.</message>
                   </requireMavenVersion>
                 </rules>
               </configuration>
@@ -158,11 +154,13 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
     <plugins>
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
         <version>2.4.1</version>
       </plugin>
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
@@ -180,16 +178,21 @@
           </execution>
         </executions>
       </plugin>
-     <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-compiler-plugin</artifactId>
-      <version>3.8.1</version>
-      <configuration>
-        <source>17</source>
-        <target>17</target>
-      </configuration>
-    </plugin>
-    </plugins>
-  </build>
 
-</project>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>17</source>
+          <target>17</target>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.kohsuke.stapler</groupId>
+              <artifactId>stapler</artifactId>
+              <version>1.262</version>
+            </path>
+            <path>
+              <groupId>org.kohsuke</groupId>
+              <artifactId>access-modifier-annotations</artifactId>
+              <version>1.22</ver
