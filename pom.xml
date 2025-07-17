@@ -35,10 +35,10 @@
   <inceptionYear>2016</inceptionYear>
 
   <scm>
-    <connection>scm:git:https://github.com/jenkinsci/plugin-pom.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkinsci/plugin-pom.git</developerConnection>
+    <connection>scm:git:https://github.com/SwarupSahithi/branch-api-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:https://github.com/SwarupSahithi/branch-api-plugin.git</developerConnection>
     <tag>HEAD</tag>
-    <url>https://github.com/jenkinsci/plugin-pom</url>
+    <url>https://github.com/SwarupSahithi/branch-api-plugin.git</url>
   </scm>
 
   <distributionManagement>
