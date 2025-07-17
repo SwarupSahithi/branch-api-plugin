@@ -30,8 +30,8 @@
   <version>5.19-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>git plugin</name>
-  <description>git plugin</description>
+  <name>branch-api-plugin</name>
+  <description>branch-api-plugin</description>
   <inceptionYear>2016</inceptionYear>
 
   <scm>
