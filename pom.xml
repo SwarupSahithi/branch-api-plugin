@@ -30,8 +30,8 @@
   <version>5.19-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Jenkins Plugin Parent POM</name>
-  <description>The Jenkins Plugins Parent POM Project</description>
+  <name>git plugin</name>
+  <description>git plugin</description>
   <inceptionYear>2016</inceptionYear>
 
   <scm>
